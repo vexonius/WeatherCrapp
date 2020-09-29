@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 class CardView: UIView {
-    private let cardBackground = UIView()
-    private let caption = UILabel()
+    let cardBackground = UIView()
+    let temperature = UILabel()
+    let city = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,7 +20,6 @@ class CardView: UIView {
         addSubview(cardBackground)
         inflateCardBackground()
         inflateCaption()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +29,7 @@ class CardView: UIView {
     override func updateConstraints() {
         cardBackground.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(16)
-            make.height.greaterThanOrEqualTo(superview!.center.y)
+            make.height.greaterThanOrEqualTo(superview!.center.y + superview!.center.y / 2)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
         }
@@ -43,19 +43,18 @@ class CardView: UIView {
     }
     
     private func inflateCaption(){
-        caption.textColor = UIColor.darkGray
-        caption.font = UIFont.systemFont(ofSize: 32, weight: .black)
-        caption.textAlignment = .center
-        caption.lineBreakMode = .byWordWrapping
-        caption.numberOfLines = 0
-        caption.text = "Hello IOS development!"
+        temperature.textColor = UIColor.white
+        temperature.font = UIFont.systemFont(ofSize: 99, weight: .black)
+        temperature.textAlignment = .center
+        temperature.lineBreakMode = .byWordWrapping
+        temperature.numberOfLines = 0
         
-        cardBackground.addSubview(caption)
+        cardBackground.addSubview(temperature)
         
-        caption.snp.makeConstraints { make in
-            make.edges.size.equalToSuperview().inset(16)
+        temperature.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview().inset(16)
+            make.bottom.equalTo(superview?.center.y ?? 200).offset(-16)
         }
     }
-    
     
 }

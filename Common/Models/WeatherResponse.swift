@@ -12,8 +12,8 @@ import Foundation
 // MARK: - WeatherResponse
 struct WeatherResponse: Codable {
     let windCdir: String
-    let rh: Int
-    let pod, lon: String
+    let rh: Double
+    let pod: String
     let pres: Double
     let timezone, obTime, countryCode: String
     let clouds, vis: Int
@@ -24,16 +24,19 @@ struct WeatherResponse: Codable {
     let ts, hAngle: Int
     let dewpt: Double
     let weather: Weather
-    let uv, aqi: Int
+    let aqi: Int
+    let uv: Double
     let station: String
-    let windDir, elevAngle: Int
+    let windDir: Int
+    let elevAngle: Double
     let datetime: String
     let precip: Int
     let ghi: Double
-    let dni, dhi, solarRAD: Int
+    let dni, dhi, solarRAD: Double
     let cityName, sunrise, sunset: String
     let temp: Double
-    let lat: String
+    let lat: Double
+    let lon: Double
     let slp: Double
 
     enum CodingKeys: String, CodingKey {

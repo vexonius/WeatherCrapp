@@ -9,9 +9,10 @@
 import Foundation
 import RxSwift
 import RxAlamofire
+import SwiftyJSON
 
 protocol WebServiceProvide {
-   // func getCurrentWeather() -> Observable<WeatherResponse?>
+    func getCurrentWeather() -> Observable<WeatherResponse?>
 }
 
 class WebService {
@@ -21,26 +22,30 @@ class WebService {
     struct Constants {
         static let baseURL = "https://api.weatherbit.io/v2.0/"
         static let currentWeatherEndpoint = "current"
-        static let params: [String: String] = [ "key": "https://api.weatherbit.io/v2.0/current", "lang": "hr" ]
+        static let params: [String: String] = [ "city":"Split,HR", "key": "a6770fb472134a5f80c00765902762f2", "lang": "hr" ]
     }
+
     
-    init() {
+    func getCurrentWeather() -> Observable<WeatherResponse?> {
+        
+        return RxAlamofire
+            .requestJSON(.get, Constants.baseURL + Constants.currentWeatherEndpoint, parameters: Constants.params)
+            .flatMap { (_, data) -> Observable<WeatherResponse?>  in
+                
+                print(json)
+                
+                let weatherData = JSON(data)
+                
+                let decoder = JSONDecoder()
+                
+                if let weather = try? decoder.decode(WeatherResponse.self, from: weatherData["data"].array!.first!.rawData()) {
+                    return Observable.just(weather)
+                } else {
+                    return Observable.just(nil)
+                }
+        }
         
     }
     
-//    func getCurrentWeather() -> Observable<WeatherResponse?> {
-//
-//        return RxAlamofire
-//            .requestJSON(.get, Constants.baseURL + Constants.currentWeatherEndpoint)
-//            .debug()
-//            .flatMap { (arg0) -> Observable<WeatherResponse?> in
-//
-//                let (HTTPURLResponse, json) = arg0
-//                return Observable.just(WeatherResponse())
-//        }
-//
-//        return Observable.just(WeatherResponse())
-//
-//    }
     
 }

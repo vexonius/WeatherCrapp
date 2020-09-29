@@ -24,6 +24,7 @@
 		F08F35A42520EF9B00E79E18 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F08F35A32520EF9B00E79E18 /* RxAlamofire */; };
 		F08F35A6252102B100E79E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F08F35A5252102B100E79E18 /* Main.storyboard */; };
 		F08F35A825210A6900E79E18 /* SnippetsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08F35A725210A6900E79E18 /* SnippetsTableView.swift */; };
+		F0CB7E92252203AF00C6D32B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F0CB7E91252203AF00C6D32B /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F08F359C2520EEFF00E79E18 /* RxCocoa in Frameworks */,
+				F0CB7E92252203AF00C6D32B /* SwiftyJSON in Frameworks */,
 				F08F359E2520EEFF00E79E18 /* RxBlocking in Frameworks */,
 				F08F359A2520EEFF00E79E18 /* RxRelay in Frameworks */,
 				F08F35A42520EF9B00E79E18 /* RxAlamofire in Frameworks */,
@@ -149,6 +151,7 @@
 				F08F359D2520EEFF00E79E18 /* RxBlocking */,
 				F08F35A02520EF2600E79E18 /* SnapKit */,
 				F08F35A32520EF9B00E79E18 /* RxAlamofire */,
+				F0CB7E91252203AF00C6D32B /* SwiftyJSON */,
 			);
 			productName = WeatherCrapp;
 			productReference = F08F35732520E0AC00E79E18 /* WeatherCrapp.app */;
@@ -182,6 +185,7 @@
 				F08F35962520EEFF00E79E18 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				F08F359F2520EF2600E79E18 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				F08F35A22520EF9B00E79E18 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				F0CB7E90252203AF00C6D32B /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = F08F35742520E0AC00E79E18 /* Products */;
 			projectDirPath = "";
@@ -431,6 +435,14 @@
 				minimumVersion = 5.6.1;
 			};
 		};
+		F0CB7E90252203AF00C6D32B /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -463,6 +475,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F08F35A22520EF9B00E79E18 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
 			productName = RxAlamofire;
+		};
+		F0CB7E91252203AF00C6D32B /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CB7E90252203AF00C6D32B /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
