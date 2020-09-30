@@ -25,7 +25,7 @@ class SnippetTableView : UIView {
         super.init(frame: frame)
         
         addSubview(collectionView)
-        //self.updateConstraintsIfNeeded()
+        self.updateConstraintsIfNeeded()
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +34,7 @@ class SnippetTableView : UIView {
     
     override func updateConstraints() {
         
-        collectionView.snp.makeConstraints { (make) in
+        collectionView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview().inset(16)
         }
         

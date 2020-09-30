@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         
         bindViews()
     }
@@ -60,16 +60,14 @@ class ViewController: UIViewController {
     private func bindViews() {
         viewModel.currentWeather
             .bind { weather in
-                if weather == nil { return }
-                self.cardView.temperature.text = String(format: " %.0f °", weather?.temp ?? 0)
+                guard let weather = weather else { return }
+                self.cardView.temperature.text = String(format: " %.0f°", weather.temp)
+                self.cardView.city.text = String(format: "%@, %@", weather.cityName, weather.countryCode)
+                self.cardView.weatherDescription.text = weather.weather.weatherDescription
             }
             .disposed(by: disposeBag)
     }
     
-    
-    
-    
-
 }
 
 

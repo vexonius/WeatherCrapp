@@ -32,13 +32,11 @@ class WebService {
             .requestJSON(.get, Constants.baseURL + Constants.currentWeatherEndpoint, parameters: Constants.params)
             .flatMap { (_, data) -> Observable<WeatherResponse?>  in
                 
-                print(json)
-                
                 let weatherData = JSON(data)
                 
-                let decoder = JSONDecoder()
+//              FIXME: Clean upp force unwrapping
                 
-                if let weather = try? decoder.decode(WeatherResponse.self, from: weatherData["data"].array!.first!.rawData()) {
+                if let weather = try? JSONDecoder().decode(WeatherResponse.self, from: weatherData["data"].array!.first!.rawData()) {
                     return Observable.just(weather)
                 } else {
                     return Observable.just(nil)
