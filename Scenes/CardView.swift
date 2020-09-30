@@ -13,6 +13,7 @@ class CardView: UIView {
     let cardBackground = UIView()
     let temperature = UILabel()
     let city = UILabel()
+    let weatherIcon = UIImageView()
     let weatherDescription = UITextField()
     
     override init(frame: CGRect) {
@@ -24,6 +25,7 @@ class CardView: UIView {
         inflateCityTextView()
         inflateTemperatureTextView()
         inflateWeatherDescription()
+        inflateWeatherIconView()
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +44,7 @@ class CardView: UIView {
     }
     
     private func inflateCardBackground(){
-        cardBackground.backgroundColor = UIColor(named: "limeGreen")
+        cardBackground.backgroundColor = UIColor(named: "blueSky")
         cardBackground.layer.cornerRadius = 20
     }
     
@@ -91,6 +93,16 @@ class CardView: UIView {
             make.right.equalToSuperview()
             make.top.equalTo(temperature.snp.bottom)
             make.height.greaterThanOrEqualTo(30)
+        }
+    }
+    
+    private func inflateWeatherIconView(){
+        cardBackground.addSubview(weatherIcon)
+        
+        weatherIcon.snp.makeConstraints { make in
+            make.top.right.equalTo(cardBackground).inset(24)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
         }
     }
     

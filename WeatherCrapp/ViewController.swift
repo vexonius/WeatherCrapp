@@ -64,6 +64,7 @@ class ViewController: UIViewController {
                 self.cardView.temperature.text = String(format: " %.0f°", weather.temp)
                 self.cardView.city.text = String(format: "%@, %@", weather.cityName, weather.countryCode)
                 self.cardView.weatherDescription.text = weather.weather.weatherDescription
+                self.cardView.weatherIcon.image = UIImage(named: "weatherRainy")?.withTintColor(UIColor.white)
             }
             .disposed(by: disposeBag)
     }
