@@ -35,16 +35,21 @@ class CardView: UIView {
     override func updateConstraints() {
         cardBackground.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(16)
-            make.height.greaterThanOrEqualTo((superview?.center.y ?? 200 / 2) ?? 100)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
+            
+            if superview != nil {
+                make.height.greaterThanOrEqualTo(superview!.center.y * 3/2)
+            } else {
+                make.height.greaterThanOrEqualTo(300)
+            }
         }
         
         super.updateConstraints()
     }
     
     private func inflateCardBackground(){
-        cardBackground.backgroundColor = UIColor(named: "blueSky")
+        cardBackground.backgroundColor = UIColor(named: "skyBlue")
         cardBackground.layer.cornerRadius = 20
     }
     
@@ -91,7 +96,7 @@ class CardView: UIView {
         weatherDescription.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.top.equalTo(temperature.snp.bottom)
+            make.top.equalTo(temperature.snp.bottom).offset(12)
             make.height.greaterThanOrEqualTo(30)
         }
     }

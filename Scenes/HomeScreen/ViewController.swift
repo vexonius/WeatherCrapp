@@ -13,7 +13,7 @@ import RxSwift
 class ViewController: UIViewController {
 
     private let cardView = CardView()
-    private let collectionView = SnippetTableView()
+    private let forecastTilesView = SnippetTableView()
     
     private let viewModel = CardViewModel(service: WebService())
     private let disposeBag = DisposeBag()
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setupCardView()
-        setupCollectionView()
+        setupForecastTilesView()
     }
     
     private func setupCardView(){
@@ -30,7 +30,6 @@ class ViewController: UIViewController {
         
         cardView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
-            make.bottom.equalToSuperview().offset(-20)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         }
@@ -38,17 +37,19 @@ class ViewController: UIViewController {
         cardView.updateConstraints()
     }
     
-    private func setupCollectionView(){
-        view.addSubview(collectionView)
+    private func setupForecastTilesView(){
+        view.addSubview(forecastTilesView)
         
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+        forecastTilesView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(8)
+            make.top.equalTo(cardView.cardBackground.snp.bottom)
+            make.height.equalTo(120)
         }
         
-        collectionView.updateConstraints()
+        forecastTilesView.updateConstraints()
+        
+        forecastTilesView.collectionView.delegate = self
+        forecastTilesView.collectionView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +62,7 @@ class ViewController: UIViewController {
         viewModel.currentWeather
             .bind { weather in
                 guard let weather = weather else { return }
-                self.cardView.temperature.text = String(format: " %.0f°", weather.temp)
+                self.cardView.temperature.text = String(format: "  %.0f°", weather.temp)
                 self.cardView.city.text = String(format: "%@, %@", weather.cityName, weather.countryCode)
                 self.cardView.weatherDescription.text = weather.weather.weatherDescription
                 self.cardView.weatherIcon.image = UIImage(named: "weatherRainy")?.withTintColor(UIColor.white)
@@ -69,6 +70,26 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+}
+
+extension ViewController: UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("User tapped on item \(indexPath.row)")
+        
+        self.present(UIViewController(), animated: true, completion: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        myCell.backgroundColor = UIColor(named: "lightGrey")
+        myCell.layer.cornerRadius = 12
+        return myCell
+    }
 }
 
 

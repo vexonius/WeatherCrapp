@@ -15,8 +15,15 @@ class SnippetTableView : UIView {
     lazy var collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 16)
+        layout.itemSize = CGSize(width: CGFloat(80), height: CGFloat(80))
+        layout.scrollDirection = .horizontal
         
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.showsHorizontalScrollIndicator = false
         
         return collectionView
     }()
@@ -25,7 +32,7 @@ class SnippetTableView : UIView {
         super.init(frame: frame)
         
         addSubview(collectionView)
-        self.updateConstraintsIfNeeded()
+        self.updateConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -35,13 +42,11 @@ class SnippetTableView : UIView {
     override func updateConstraints() {
         
         collectionView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview().inset(16)
+            make.edges.equalToSuperview().inset(8)
         }
         
         super.updateConstraints()
         
     }
-    
-    
     
 }

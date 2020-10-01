@@ -61,6 +61,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F021B74925248386008589A0 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F08F357A2520E0AC00E79E18 /* ViewController.swift */,
+				F08F358C2520ECBE00E79E18 /* CardView.swift */,
+				F08F358B2520ECBE00E79E18 /* CardViewModel.swift */,
+				F08F35A725210A6900E79E18 /* SnippetsTableView.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
 		F08F356A2520E0AC00E79E18 = {
 			isa = PBXGroup;
 			children = (
@@ -85,7 +96,6 @@
 				F08F35A5252102B100E79E18 /* Main.storyboard */,
 				F08F35762520E0AC00E79E18 /* AppDelegate.swift */,
 				F08F35782520E0AC00E79E18 /* SceneDelegate.swift */,
-				F08F357A2520E0AC00E79E18 /* ViewController.swift */,
 				F08F357F2520E0AE00E79E18 /* Assets.xcassets */,
 				F08F35812520E0AE00E79E18 /* LaunchScreen.storyboard */,
 				F08F35842520E0AE00E79E18 /* Info.plist */,
@@ -96,9 +106,7 @@
 		F08F358A2520EC9200E79E18 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				F08F358C2520ECBE00E79E18 /* CardView.swift */,
-				F08F358B2520ECBE00E79E18 /* CardViewModel.swift */,
-				F08F35A725210A6900E79E18 /* SnippetsTableView.swift */,
+				F021B74925248386008589A0 /* HomeScreen */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
