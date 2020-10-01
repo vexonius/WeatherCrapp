@@ -46,7 +46,12 @@ class SnippetTableView : UIView {
         }
         
         super.updateConstraints()
-        
     }
+    
+}
+
+class ForecastUICollectionCell : UICollectionView {
+    
+  
     
 }

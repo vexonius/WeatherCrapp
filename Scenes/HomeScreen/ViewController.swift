@@ -21,8 +21,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCardView()
+        
         setupForecastTilesView()
+        setupCardView()
     }
     
     private func setupCardView(){
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
+            make.bottom.equalTo(forecastTilesView.snp.top)
         }
         
         cardView.updateConstraints()
@@ -42,8 +44,8 @@ class ViewController: UIViewController {
         
         forecastTilesView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(8)
-            make.top.equalTo(cardView.cardBackground.snp.bottom)
-            make.height.equalTo(120)
+            make.height.equalTo(140)
+            make.bottom.equalToSuperview()
         }
         
         forecastTilesView.updateConstraints()
